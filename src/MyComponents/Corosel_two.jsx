@@ -11,11 +11,11 @@ export default function Corosel_two() {
                 <div className="wrapper">
                     <div class="row featurette w-100" >
                         <div class="col-md-5 order-md-1" style={{ maxWidth: '56%', width: '100%', lineHeight: '1.7' }}>
-                            <img src={dish2_1} alt="" height='200' width='175' style={{ bottom: '-588px', left: '124px', zIndex: '1', objectFit: 'cover', position: 'absolute' }} />
+                            {/* <img src={dish2_1} alt="" height='200' width='175' style={{ bottom: '-588px', left: '124px', zIndex: '1', objectFit: 'cover', position: 'absolute' }} /> */}
                             <img src={dish2} alt="dish2" width='598' height='559' style={{ objectFit: 'cover', position: 'relative' }} />
                             {/* <img src={dish2_2} alt="" height='121' width='117' style={{ bottom: '-10px', left: '420px', zIndex: '1', objectFit: 'cover', position: 'absolute' }} /> */}
-                            <img className='def' src={dish2_2} alt="" />
-                            <img src={dish2_3} alt="" height='172' width='158' style={{ bottom: '-320px', left: '680px', zIndex: '1', objectFit: 'cover', position: 'absolute' }} />
+                            {/* <img className='def' src={dish2_2} alt="" /> */}
+                            {/* <img src={dish2_3} alt="" height='172' width='158' style={{ bottom: '-320px', left: '680px', zIndex: '1', objectFit: 'cover', position: 'absolute' }} /> */}
                         </div>
                         <div class="corosel_text col-md-7 order-md-2 " style={{ maxWidth: '44%', width: '100%', lineHeight: '2', fontFamily: 'Open Sans' }}>
                             <h1 class="featurette-heading">Our Most <br />Popular <span class="text" style={{ color: '#F54748', fontSize: '80px', fontFamily: 'Open Sans' }}>Dish.</span></h1>

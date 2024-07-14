@@ -5,7 +5,7 @@ import menu_dish5 from './Images/menu_dish5.png'
 import menu_dish6 from './Images/menu_dish6.png'
 import menu_dish2 from './Images/menu_dish2.png'
 import menu_dish4 from './Images/menu_dish4.png'
-import dark_choco from './Images/dark_choco.jpeg'
+// import dark_choco from './Images/dark_choco.jpeg'
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import Counter from './Counter'

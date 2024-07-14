@@ -8,7 +8,7 @@ export default function Reviews() {
                 <div className="wrapper">
                     <h1 className="review_header" style={{ textAlign: 'center', fontSize: '52px', fontWeight: '700', marginBottom: '43px', fontFamily: 'open sans' }}>What Our Customers Say</h1>
                     <div className="reviews_main">
-                        <div className="arrow_left_reviews"><i class="fa-solid fa-angle-left"></i></div>
+                        {/* <div className="arrow_left_reviews"><i class="fa-solid fa-angle-left"></i></div> */}
                         <div className="reviews_text">
                             {/* <span style={{ fontWeight: '700', fontSize: '50px', alignItems: 'end' }}>''</span><br /> */}
                             <h3 className="reviews_main_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -22,7 +22,7 @@ export default function Reviews() {
                                 </div>
                             </div>
                         </div>
-                        <div className="arrow_right_reviews"><i class="fa-solid fa-angle-right"></i></div>
+                        {/* <div className="arrow_right_reviews"><i class="fa-solid fa-angle-right"></i></div> */}
                     </div>
                 </div>
             </div>
