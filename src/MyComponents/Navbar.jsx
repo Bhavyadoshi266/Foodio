@@ -5,7 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 export default function Navbar() {
     return (
         <>
-            <div className='navbar main_page'>
+            <div className='navbar main_page ' style={{ backgroundImage: "linear-gradient(180deg, #f447482b, #f5474800)" }}>
 
                 <div className="wrapper">
                     <div class="container">

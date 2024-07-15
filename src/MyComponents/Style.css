@@ -24,7 +24,8 @@
 
 .main_page {
     padding: 50px;
-    background-image: linear-gradient(180deg, #f447482b, #f5474800);
+    /* background-image: linear-gradient(180deg, #f447482b, #f5474800); */
+    /* background-color: #f9f9f9; */
 }
 
 .main_bar {
