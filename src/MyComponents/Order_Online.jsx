@@ -1,23 +1,22 @@
 import React, { useState, useContext } from 'react';
 import trash from './Images/trash.svg';
 import order_online1 from './Images/Order_Online1.png';
-import menu_dish5 from './Images/menu_dish5.png'
-import menu_dish6 from './Images/menu_dish6.png'
-import menu_dish2 from './Images/menu_dish2.png'
-import menu_dish4 from './Images/menu_dish4.png'
+import menu_dish5 from './Images/menu_dish5.png';
+import menu_dish6 from './Images/menu_dish6.png';
+import menu_dish2 from './Images/menu_dish2.png';
+import menu_dish4 from './Images/menu_dish4.png';
 // import dark_choco from './Images/dark_choco.jpeg'
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-import Counter from './Counter'
 
 export default function Order_Online(props) {
-    const [data, setdata] = useState([
+    const [data, setData] = useState([
         {
             id: '1',
             imgsrc: menu_dish5,
             dishname: 'Margerita',
             type: "Pizza",
-            price: "$12.05",
+            price: 12.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -25,7 +24,7 @@ export default function Order_Online(props) {
             imgsrc: order_online1,
             dishname: 'Dark chocolate',
             type: "Desert",
-            price: '$10.05',
+            price: 10.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -33,7 +32,7 @@ export default function Order_Online(props) {
             imgsrc: menu_dish6,
             dishname: '7 seven cheesy',
             type: "Pizza",
-            price: '$7.05',
+            price: 7.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -41,7 +40,7 @@ export default function Order_Online(props) {
             imgsrc: menu_dish2,
             dishname: 'Spaghetti',
             type: "Pasta",
-            price: '$22.05',
+            price: 22.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -49,7 +48,7 @@ export default function Order_Online(props) {
             imgsrc: order_online1,
             dishname: 'Chikoo shake',
             type: "Drink",
-            price: '$15.05',
+            price: 15.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -57,7 +56,7 @@ export default function Order_Online(props) {
             imgsrc: menu_dish4,
             dishname: 'Capellini',
             type: "Pasta",
-            price: '$17.05',
+            price: 17.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -65,7 +64,7 @@ export default function Order_Online(props) {
             imgsrc: menu_dish2,
             dishname: 'Farfalle',
             type: "Pasta",
-            price: '$13.05',
+            price: 13.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -73,7 +72,7 @@ export default function Order_Online(props) {
             imgsrc: order_online1,
             dishname: 'Brownie',
             type: "Desert",
-            price: '$5.05',
+            price: 5.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         {
@@ -81,7 +80,7 @@ export default function Order_Online(props) {
             imgsrc: order_online1,
             dishname: 'Mint Mojito',
             type: "Drink",
-            price: '$25.05',
+            price: 25.05,
             Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas consequat.'
         },
         // Add more items as needed
@@ -89,21 +88,10 @@ export default function Order_Online(props) {
 
     const { cart, addToCart, onDelete } = useContext(CartContext);
 
-    // const [cart, setCart] = useState([]);
-
-    // const addToCart = (item) => {
-    //     const updatedCart = [...cart, item];
-    //     setCart(updatedCart);
-    // };
-
-    // const onDelete = (id) => {
-    //     setCart(cart.filter(item => item.id !== id));
-    // };
-
-    const [selectBtn, setselectBtn] = useState();
+    const [selectBtn, setSelectBtn] = useState();
 
     const handleFilterClick = (filter) => {
-        setselectBtn(filter);
+        setSelectBtn(filter);
     };
 
     const [voucherApplied, setVoucherApplied] = useState(false);
@@ -113,6 +101,27 @@ export default function Order_Online(props) {
     };
 
     const filteredDishes = selectBtn ? data.filter(item => item.type === selectBtn) : data;
+
+    const calculateSubtotal = () => {
+        return cart.reduce((total, item) => total + item.price, 0);
+    };
+
+    const calculateTax = (subtotal) => {
+        return (subtotal * 0.1); // Assuming a 10% tax rate
+    };
+
+    const calculateTotal = (subtotal, tax, voucherDiscount) => {
+        return subtotal + tax - voucherDiscount;
+    };
+
+    const coupon = (subtotal) => {
+        return (subtotal * 0.3);
+    }
+
+    const subtotal = calculateSubtotal();
+    const tax = calculateTax(subtotal);
+    const voucherDiscount = voucherApplied ? coupon(subtotal) : 0;
+    const total = calculateTotal(subtotal, tax,voucherDiscount);
 
     return (
         <div>
@@ -142,8 +151,7 @@ export default function Order_Online(props) {
                                                             <img src={item.imgsrc} alt=".." width={'196px'} height={'196px'} />
                                                             <h5 className="card-title py-4 pb-1" style={{ fontSize: '20px', fontWeight: '600' }}>{item.dishname}</h5>
                                                             <p className="card-text" style={{ fontSize: '12px', fontWeight: '400', lineHeight: '2', color: '#59442b' }}>{item.Description}</p>
-                                                            <p className='price' style={{ fontSize: '18px' }}>{item.price}</p>
-                                                            {/* <Counter itemId={item.id} /> */}
+                                                            <p className='price' style={{ fontSize: '18px' }}>${item.price.toFixed(2)}</p>
                                                             <button className='card_o_o_add' onClick={() => addToCart(item)}>Add to Cart</button>
                                                         </div>
                                                     </div>
@@ -173,15 +181,10 @@ export default function Order_Online(props) {
                                                                 </div>
 
                                                                 <div className="col-9 py-3 pb-2 px-0">
-                                                                    <p className='my-0' style={{ fontWeight: '500', color: '#311f09' }}>{cartItem.price}</p>
+                                                                    <p className='my-0' style={{ fontWeight: '500', color: '#311f09' }}>${cartItem.price}</p>
                                                                 </div>
-
-                                                                {/* <div className="col-3 py-3 pb-2 px-0" style={{ fontWeight: '500', color: '#311f09' }}>
-                                                                Total
-                                                            </div> */}
                                                             </div>
                                                         </div>
-     
                                                     ))}
                                                     {cart.length > 0 && (
                                                         <div className="total_card">
@@ -195,36 +198,34 @@ export default function Order_Online(props) {
                                                                 <div className="col-3 px-0 py-4 pt-0" onClick={() => applyVoucher()} style={{ cursor: 'pointer' }}>
                                                                     <i className="add fa-solid fa-plus"></i>
                                                                 </div>
-                                                                <div className="col-12 py-3" style={{ borderTop: '1px dashed rgb(209 204 204)', width: '100%' }}>
-
-                                                                </div>
+                                                                <div className="col-12 py-3" style={{ borderTop: '1px dashed rgb(209 204 204)', width: '100%' }}></div>
                                                                 <div className="col-9 py-2 ">
                                                                     <p className="m-0" style={{ fontWeight: '600' }}>Subtotal</p>
                                                                 </div>
                                                                 <div className="col-3 p-0" style={{ fontWeight: '500', color: '#311f09' }}>
-                                                                    $78.3
+                                                                    ${subtotal.toFixed(2)}
                                                                 </div>
                                                                 <div className="col-9 py-2" >
                                                                     <p className="m-0" style={{ fontWeight: '600' }}>Tax fee</p>
                                                                 </div>
                                                                 <div className="col-3 p-0" style={{ fontWeight: '500', color: '#311f09' }}>
-                                                                    $3.5
+                                                                    ${tax.toFixed(2)}
                                                                 </div>
                                                                 <div className="col-8 py-2">
                                                                     <p className="m-0" style={{ fontWeight: '600' }}>Voucher</p>
                                                                 </div>
                                                                 <div className="col-4 p-0" style={{ fontWeight: '500', color: '#311f09' }}>
-                                                                    {voucherApplied ? "-$5.00" : ""}
+                                                                    {voucherApplied ? `-$${voucherDiscount.toFixed(2)}` : ""}
                                                                 </div>
                                                                 <div className="col-9 py-2">
                                                                     <p className="m-0" style={{ fontWeight: '600' }}>Total</p>
                                                                 </div>
                                                                 <div className="col-3 p-0" style={{ fontWeight: '500', color: '#311f09' }}>
-                                                                    $76.8
+                                                                    ${total.toFixed(2)}
                                                                 </div>
 
                                                                 <div className="col-12 px-0 pt-5 pb-0">
-                                                                    <Link to="/checkout"> <button className="btn_checkout">Checkout</button></Link>
+                                                                    <Link to="/checkout"><button className="btn_checkout">Checkout</button></Link>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './Images/logo.svg';
-
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -19,16 +19,16 @@ export default function Footer() {
 
           <div className="footer_pages" style={{maxWidth:'12%',width:'100%',gap:'31px',marginTop:'5px',display:'flex',alignItems:'start',flexDirection:'column'}}>
             <p className='footer_header'>Page</p>
-            <a href="https://www.google.co.in/" className="footer_links" >Home</a>
-            <a href="" className="footer_links">Menu</a>
-            <a href="" className="footer_links">Order Online</a>
-            <a href="" className="footer_links">Catering</a>
-            <a href="" className="footer_links">Reservation</a>
+            <Link to="/homepage" className="footer_links" >Home</Link>
+            <Link to="/menu" className="footer_links">Menu</Link>
+            <Link to="/orderonline" className="footer_links">Order Online</Link>
+            <Link to="/" className="footer_links">Catering</Link>
+            <Link to="/reservation" className="footer_links">Reservation</Link>
           </div>
 
           <div className="footer_info" style={{maxWidth:'14%',width:'100%',gap:'31px',marginTop:'5px',display:'flex',alignItems:'start',flexDirection:'column'}}>
             <p className='footer_header'>Information</p>
-            <a href="" className="footer_links">About Us</a>
+            <Link to="/aboutus" className="footer_links">About Us</Link>
             <a href="" className="footer_links">Testimonial</a>
             <a href="" className="footer_links">Event</a>
           </div>
